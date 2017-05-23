@@ -24,7 +24,13 @@ class MessageBox extends Component {
             messages
         });
     }
-
+    removeMessage = (id)=>{
+        let messages = this.state.messages;
+        messages= messages.filter(message=>message.id !== id);
+        this.setState({
+            messages
+        });
+    }
     render() {
         return (
             <div className="panel panel-default">
@@ -32,7 +38,7 @@ class MessageBox extends Component {
                     <MessageHeader/>
                 </div>
                 <div className="panel-body">
-                    <MessageList messages={this.state.messages}/>
+                    <MessageList removeMessage={this.removeMessage} messages={this.state.messages}/>
                 </div>
                 <div className="panel-footer">
                     <MessageForm addMessage={this.addMessage}/>
